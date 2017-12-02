@@ -11,8 +11,6 @@ var LineBrush = function(){
 
 	var move = function(ctx,x,y){
 		log("move");
-		//ctx.lineTo(x,y);
-		//ctx.stroke();
 	}
 
 	var up = function(ctx,x,y){

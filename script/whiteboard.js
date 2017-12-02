@@ -3,12 +3,10 @@ include('penBrush.js');
 include('lineBrush.js');
 include('rectBrush.js');
 include('brushFactory.js');
-
 var whiteboard = function(){
 	var canvas ; 
 	var context ;
 	var paintBrush ;
-	var isBegin = false ;
 
 
 	var brushType = brushType_line ;
@@ -21,31 +19,8 @@ var whiteboard = function(){
 	}
 
 
-	var mousedownEvent = function(e){
-		isBegin = true ;
-		var pos = getPointOnCanvas(canvas,e.pageX,e.pageY);
-		paintBrush.down(context,pos.x,pos.y);
-	}
-
-	var mousemoveEvent = function(e){
-		if(isBegin){
-			var pos = getPointOnCanvas(canvas,e.pageX,e.pageY);
-			paintBrush.move(context,pos.x,pos.y);
-		}
-	}
-
-	var mouseupEvent = function(e){
-		if(isBegin){
-			var pos = getPointOnCanvas(canvas,e.pageX,e.pageY);
-			paintBrush.up(context,pos.x,pos.y);
-		}
-		isBegin = false ;
-	}
-
 	var initEvent = function(){
-		canvas.addEventListener('mousedown',mousedownEvent,false);
-		canvas.addEventListener('mousemove',mousemoveEvent,false);
-		canvas.addEventListener('mouseup',mouseupEvent,false);
+	
 	}
 
 	var init = function(_canvas){
@@ -56,8 +31,27 @@ var whiteboard = function(){
 		isBegin = false ;
 		initEvent();
 	}
+
+	
+	var start = function(x,y){
+		paintBrush.down(context,x,y);
+	}
+
+	var move = function(x,y){
+		paintBrush.move(context,x,y);
+	}
+
+	var end = function(x,y){
+		paintBrush.up(context,x,y);
+	}
+
 	this.setBrushType = setBrushType;
 	this.init = init;
+	this.start = start ; 
+	this.move = move ; 
+	this.end = end ;
+
+
 }
 
 

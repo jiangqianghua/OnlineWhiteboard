@@ -1,22 +1,28 @@
 var RectBrush = function(){
-	var down = function(ctx,x,y){
+	var startx ,starty;
+ 	var down = function(ctx,x,y){
 		log("down");
 		ctx.save();
 		ctx.lineWidth = 1 ; 
     	ctx.strokeStyle = "#005588";
-		ctx.moveTo(x,y);
+		startx = x ; 
+		starty = y ;
 	}
 
 	var move = function(ctx,x,y){
 		log("move");
-		//ctx.lineTo(x,y);
-		//context.stroke();
 	}
 
 	var up = function(ctx,x,y){
 		log("up");
-		ctx.lineTo(x,y);
-		cxt.restore();
+
+		var w = Math.abs(startx - x);
+		var h = Math.abs(starty - y);
+		var minx = Math.min(startx,x); 
+		var miny = Math.min(starty,y);
+		ctx.rect(minx,miny,w,h);
+		ctx.fill();
+		ctx.restore();
 	}
 
 
