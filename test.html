@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>在线白板</title>
+		<style type="text/css">
+			.maincanvasstyle{
+				width: 800;
+				height: 600;
+				border-color: #000000;
+				border:1px solid blue;
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<div class="containerstyle">
+			<canvas class="maincanvasstyle" id="maincanvas"></canvas>
+		</div>
+		
+
+<script type="text/javascript">
+			window.onload = function(){
+	        var canvas = document.getElementById("maincanvas");
+
+	        var context = canvas.getContext("2d");
+
+	        context.lineWidth = 2;
+	        context.beginPath();
+	        context.moveTo(100,0);
+	        context.lineTo( 300, 300);
+	        context.strokeStyle = "red";
+	        context.stroke();    
+
+	        //  开始一段新的绘制
+	        context.beginPath();
+	        context.moveTo( 100, 100);
+	        context.lineTo( 200, 500);
+	        context.strokeStyle = "blue";
+	        context.stroke();    
+	    }
+		</script>
+	</body>
+</html>
